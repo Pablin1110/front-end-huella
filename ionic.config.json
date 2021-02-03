@@ -1,0 +1,7 @@
+{
+  "name": "huellacarbono",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

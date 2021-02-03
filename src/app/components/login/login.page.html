@@ -1,0 +1,41 @@
+<ion-content padding center text-center class="animated fadeIn login auth-page">
+  <form [formGroup]="signupForm">
+  <div class="padding">
+    <div class="logo img">
+      <img class="icon" src="assets/icon/huella2.png" alt="">
+    </div>
+  <div class="theme-bg"></div>
+  <div class="auth-content">
+    <ion-item>
+      <ion-label color="dark">
+       <ion-icon name="mail" item-start></ion-icon>
+       </ion-label>
+       <ion-input [(ngModel)]="email" color="dark" formControlName="email" placeholder="Correo electrónico" type="email" name="email" ></ion-input>
+    </ion-item>
+    <div align="center" class = "alert-danger" *ngIf="signupForm.get('email').hasError('email') && signupForm.get('email').touched">Es necesario introducir un correo electrónico valido</div>
+    <ion-item>
+      <ion-label color="dark">
+        <ion-icon name="key" item-start></ion-icon>
+       </ion-label>
+       <ion-input [(ngModel)]="password" color="dark" formControlName="password" placeholder="Contraseña"  type="password" name="password" ></ion-input>
+    </ion-item>
+    <div align="center" class = "alert-danger" *ngIf="signupForm.controls['password'].hasError('required') && signupForm.get('password').touched">Es necesario introducir la contraseña</div>
+    <div align="center" class = "alert-danger" *ngIf="signupForm.controls['password'].hasError('minlength') && signupForm.get('password').touched">La contraseña debe tener 6 caracteres</div>
+    <ion-button  (click)="OnSubmitLogin()" fill="outline" type="submit" shape="round" expand="block" color="success" class="ion-margin-top">
+      <ion-icon name="log-in"></ion-icon>
+       Ingresar
+    </ion-button>
+  <div text-center margin-top class="ion-margin-top">
+    <span  class="paz" tappable>
+      <ion-button routerLink="/register" shape="round" expand="block" color="success">Registrarse</ion-button>
+      </span>
+    </div>
+    <p text-right tappable  class="paz" align="center">
+      <ion-text  color="dark">
+        <strong routerLink="/reset-pass">¿Olvidó su contraseña?</strong>
+      </ion-text>
+    </p>
+  </div>
+</div>
+</form>
+</ion-content>

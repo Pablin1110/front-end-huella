@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Resultados</ion-title>
+    <ion-button slot="end" fill="clear" (click)="presentActionSheet()">
+      <ion-icon name="menu-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doSomething($event)">
+    <ion-refresher-content  refreshingSpinner="circles" refreshingText="Actualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-card>
+  </ion-card>
+  <ion-card>
+    <ion-list *ngFor="let data of carbon ">
+      <ion-item  (click)="getScopeOneInfo(data.id)">
+      <ion-card-content>
+        <ion-card-header>
+          <ion-card-title align="center"><b> {{data.nombre}}</b></ion-card-title>
+          <ion-card-subtitle><p style="color:#000000"><b>Tipo: </b>  {{data.tipo}} </p> </ion-card-subtitle>
+          <ion-card-subtitle><p style="color:#000000"> <b>Sector: </b> {{data.sector}} </p></ion-card-subtitle>
+          <ion-card-subtitle><p style="color:#000000"> <b>Fecha: </b> {{data.fecha}} </p></ion-card-subtitle>
+        </ion-card-header>
+        <H3 style="color:#000000"><u><b>Resultados absolutos del año de calculo</b></u></H3> <br>
+        <div *ngIf="this.value < 100 && data.tipo === 'Micro empresa'">
+          <table align="center" class="egt">
+            <tr style="color:#000000">
+              <th>Alcance uno: </th>
+              <td  align="end">{{data.alcance_uno}} <b>t CO<sub>2</sub>eq</b> </td>
+            </tr>
+            <tr style="color:#000000">
+              <th>Alcance dos:</th>
+              <td align="end">{{data.alcance_dos}} <b>t CO<sub>2</sub>eq</b></td>
+            </tr><br>
+            <tr style="color:#000000">
+              <th >Total:</th>
+              <td style="background-color:#5ee993; text-align: center;" shape="round" color="light" size="small" align="end" value="0.00">{{this.value}} <b>t CO<sub>2</sub>eq</b></td>
+            </tr>
+          </table>
+     </div>
+     <div *ngIf="this.value > 100 && data.tipo === 'Micro empresa'">
+      <table align="center" class="egt">
+        <tr style="color:#000000">
+          <th>Alcance uno: </th>
+          <td  align="end">{{data.alcance_uno}} <b>t CO<sub>2</sub>eq</b> </td>
+        </tr>
+        <tr style="color:#000000">
+          <th>Alcance dos:</th>
+          <td align="end">{{data.alcance_dos}} <b>t CO<sub>2</sub>eq</b></td>
+        </tr><br>
+        <tr style="color:#000000">
+          <th >Total:</th>
+          <td style="background-color:#ff0000; text-align: center;" shape="round" color="light" size="small" align="end" value="0.00">{{this.value}} <b>t CO<sub>2</sub>eq</b></td>
+        </tr>
+      </table>
+    </div>
+
+    <div *ngIf="this.value < 1000 && data.tipo === 'Mediana empresa'">
+      <table align="center" class="egt">
+        <tr style="color:#000000">
+          <th>Alcance uno: </th>
+          <td  align="end">{{data.alcance_uno}} <b>t CO<sub>2</sub>eq</b> </td>
+        </tr>
+        <tr style="color:#000000">
+          <th>Alcance dos:</th>
+          <td align="end">{{data.alcance_dos}} <b>t CO<sub>2</sub>eq</b></td>
+        </tr><br>
+        <tr style="color:#000000">
+          <th >Total:</th>
+          <td style="background-color:#5ee993; text-align: center;" shape="round" color="light" size="small" align="end" value="0.00">{{this.value}} <b>t CO<sub>2</sub>eq</b></td>
+        </tr>
+      </table>
+ </div>
+ <div *ngIf="this.value > 1000 && data.tipo === 'Mediana empresa'">
+  <table align="center" class="egt">
+    <tr style="color:#000000">
+      <th>Alcance uno: </th>
+      <td  align="end">{{data.alcance_uno}} <b>t CO<sub>2</sub>eq</b> </td>
+    </tr>
+    <tr style="color:#000000">
+      <th>Alcance dos:</th>
+      <td align="end">{{data.alcance_dos}} <b>t CO<sub>2</sub>eq</b></td>
+    </tr><br>
+    <tr style="color:#000000">
+      <th >Total:</th>
+      <td style="background-color:#ff0000; text-align: center;" shape="round" color="light" size="small" align="end" value="0.00">{{this.value}} <b>t CO<sub>2</sub>eq</b></td>
+    </tr>
+  </table>
+</div>
+
+
+<div *ngIf="this.value < 300 && data.tipo === 'Pequeña empresa'">
+  <table align="center" class="egt">
+    <tr style="color:#000000">
+      <th>Alcance uno: </th>
+      <td  align="end">{{data.alcance_uno}} <b>t CO<sub>2</sub>eq</b> </td>
+    </tr>
+    <tr style="color:#000000">
+      <th>Alcance dos:</th>
+      <td align="end">{{data.alcance_dos}} <b>t CO<sub>2</sub>eq</b></td>
+    </tr><br>
+    <tr style="color:#000000">
+      <th >Total:</th>
+      <td style="background-color:#5ee993; text-align: center;" shape="round" color="light" size="small" align="end" value="0.00">{{this.value}} <b>t CO<sub>2</sub>eq</b></td>
+    </tr>
+  </table>
+</div>
+<div *ngIf="this.value > 300 && data.tipo === 'Pequeña empresa'">
+<table align="center" class="egt">
+<tr style="color:#000000">
+  <th>Alcance uno: </th>
+  <td  align="end">{{data.alcance_uno}} <b>t CO<sub>2</sub>eq</b> </td>
+</tr>
+<tr style="color:#000000">
+  <th>Alcance dos:</th>
+  <td align="end">{{data.alcance_dos}} <b>t CO<sub>2</sub>eq</b></td>
+</tr><br>
+<tr style="color:#000000">
+  <th >Total:</th>
+  <td style="background-color:#ff0000; text-align: center;" shape="round" color="light" size="small" align="end" value="0.00">{{this.value}} <b>t CO<sub>2</sub>eq</b></td>
+</tr>
+</table>
+</div>
+
+
+      </ion-card-content>
+    </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>
+

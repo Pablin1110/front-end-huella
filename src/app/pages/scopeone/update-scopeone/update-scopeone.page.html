@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" (click)="dismissScopeone()">
+      <ion-icon color="dark" name="arrow-undo-outline"></ion-icon>
+    </ion-button>
+    <ion-title>{{isUpdate ? 'Modificar' :'Agregar'}} Alcance Uno</ion-title>
+    <ion-button slot="end" fill="clear" (click)="showAlert()">
+      <ion-icon color="dark" name="information-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="OnSubmit(f)">
+    
+    <div *ngIf="isUpdate==true;else Boton">
+      <ion-input [(ngModel)]="data.usuario_id" type="hidden"  name="usuario_id"></ion-input>
+ </div>
+<ng-template #Boton>
+  <ion-input [(ngModel)]="usuario_id" type="hidden"  name="usuario_id"></ion-input>
+</ng-template>
+    <ion-item>
+      <ion-label position="floating" >Lugar:</ion-label>
+      <ion-input [(ngModel)]="data.lugar" type="text" name="lugar"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" >Equipo:</ion-label>
+      <ion-select   [(ngModel)]="data.equipo" (ionChange)="OnChange($event)" position="floating" name="equipo">
+        <ion-select-option  *ngFor= 'let item of dataEqui' [value]='item.name'>
+          {{item.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <div *ngIf="isUpdate==true;else Boton2">
+      <ion-item>
+        <ion-label>Tipo:</ion-label>
+        <ion-input side="end" readonly [(ngModel)]="data.tipo" type="text" name="tipo" ></ion-input>
+      </ion-item>
+    </div>
+    <ng-template #Boton2>
+      <ion-item>
+        <ion-label >Tipo:</ion-label>
+        <ion-input side="end" readonly [(ngModel)]="tipo" type="text" name="tipo" ></ion-input>
+      </ion-item>
+    </ng-template>
+
+
+    <div *ngIf="isUpdate==true;else Boton3">
+      <ion-item>
+        <ion-label position="floating" >Cantidad inicial:</ion-label>
+        <ion-input (ionChange)="OnChangeinicial($event)" [(ngModel)]="data.cantidad_inicial"  type="number"  name="cantidad_inicial" ></ion-input>
+      </ion-item>
+    </div>
+    <ng-template #Boton3>
+      <ion-item>
+        <ion-label position="floating" >Cantidad inicial:</ion-label>
+        <ion-input   (ionChange)="OnChangeinicial($event)" [(ngModel)]="cantidad_inicial"  type="number"  name="cantidad_inicial" ></ion-input>
+      </ion-item>
+    </ng-template>
+
+    <div *ngIf="isUpdate==true;else Boton4">
+      <ion-item>
+        <ion-label position="floating" >Cantidad anual:</ion-label>
+        <ion-input   [(ngModel)]="data.cantidad_anual"  type="number"  name="cantidad_anual" ></ion-input>
+      </ion-item>
+    </div>
+    <ng-template #Boton4>
+      <ion-item>
+        <ion-label position="floating" >Cantidad anual:</ion-label>
+        <ion-input [(ngModel)]="cantidad_anual"  type="number"  name="cantidad_anual" ></ion-input>
+      </ion-item>
+    </ng-template>
+
+    <div *ngIf="isUpdate==true;else Boton5">
+      <ion-item>
+        <ion-label  >Factor de emisión:</ion-label>
+        <ion-input [(ngModel)]="data.factor_emision" readonly type="number"  name="factor_emision" ></ion-input>
+      </ion-item>
+    </div>
+    <ng-template #Boton5>
+      <ion-item>
+        <ion-label  >Factor de emisión:</ion-label>
+        <ion-input [(ngModel)]="factor_emision" readonly type="number"  name="factor_emision" ></ion-input>
+      </ion-item>
+    </ng-template>
+
+    <div *ngIf="isUpdate==true;else Boton6">
+      <ion-item>
+        <ion-label  >Emisión total:</ion-label>
+        <ion-input [(ngModel)]="data.emisiones_totales" readonly  type="number"  name="emisiones_totales" ></ion-input>
+      </ion-item>
+    </div>
+    <ng-template #Boton6>
+      <ion-item>
+        <ion-label  >Emisión total:</ion-label>
+        <ion-input [(ngModel)]="emisiones_totales" readonly  type="number"  name="emisiones_totales" ></ion-input>
+      </ion-item>
+    </ng-template>
+
+    <div *ngIf="isUpdate==true;else Boton7">
+      <ion-button [disabled]="!f.valid" type="submit" fill="solid" shape="round" expand="block" color="success" class="ion-margin-top">{{isUpdate ? 'Modificar' :'Ingresar'}}</ion-button>
+  </div>
+  <ng-template #Boton7>
+      <ion-button [disabled]="!f.valid" type="submit" fill="solid" shape="round" expand="block" color="success" class="ion-margin-top">{{isUpdate ? 'Modificar' :'Ingresar'}}</ion-button>
+  </ng-template>
+</form>
+</ion-content>

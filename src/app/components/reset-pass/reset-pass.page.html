@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="success">
+    <ion-title class="ion-text-center">
+      ¿Olvidaste tu contraseña?
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding center text-center class="animated fadeIn login auth-page">
+  <form [formGroup]="signupForm">
+  <div class="padding">
+    <div class="logo img">
+      <img class="icon" src="assets/icon/huella2.png" alt="">
+    </div>
+  <div class="theme-bg"></div>
+  <div class="auth-content">
+    <div class="ion-text-center">
+      <small>Escribe tu correo electrónico para enviar las instrucciones y recuperar su contraseña</small>
+    </div>
+    <ion-item>
+      <ion-label color="dark">
+       <ion-icon name="mail" item-start></ion-icon>
+       </ion-label>
+       <ion-input [(ngModel)]="email" color="dark" formControlName="email" placeholder="Ingrese su correo electrónico" type="email" name="email" ></ion-input>
+    </ion-item>
+    <div align="center" class = "alert-danger" *ngIf="signupForm.get('email').hasError('email') && signupForm.get('email').touched">Es necesario introducir un correo electrónico valido</div>
+    <ion-button (click)="sendLinkReset()"  fill="outline" type="submit" shape="round" expand="block" color="success" class="ion-margin-top">
+      <ion-icon name="log-in"></ion-icon>
+      Recuperar
+    </ion-button>
+  <div text-center margin-top class="ion-margin-top">
+    <span  class="paz" tappable>
+      <ion-button routerLink="/login" shape="round" expand="block" color="success">Ya tengo cuenta!</ion-button>
+      </span>
+    </div>
+    <p text-right tappable  class="paz" align="center">
+      <ion-text  color="dark">
+        <strong routerLink="/register">Registrarse</strong>
+      </ion-text>
+    </p>
+  </div>
+</div>
+</form>
+</ion-content>

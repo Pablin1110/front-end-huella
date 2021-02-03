@@ -1,0 +1,37 @@
+<ion-content padding center text-center class="animated fadeIn login auth-page">
+  <div class="padding">
+    <div class="logo img">
+      <img class="icon" src="assets/icon/huella2.png" alt="">
+    </div>
+  <div class="auth-content">
+    <ion-item>
+       <ion-input [(ngModel)]="name" color="dark"  placeholder="Nombre" type="name" name="name" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+       <ion-input [(ngModel)]="lastname" color="dark"  placeholder="Apellido" type="lastname" name="lastname" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+       <ion-input [(ngModel)]="email" color="dark"  placeholder="Correo electrónico" type="email" name="email" ></ion-input>
+    </ion-item>
+    <ion-item>
+       <ion-input [(ngModel)]="password" color="dark"  placeholder="Contraseña"  type="password" name="password" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+       <ion-input [(ngModel)]="confirm_password" color="dark"  placeholder="Repetir contraseña"  type="password" name="confirm_password" ></ion-input>
+    </ion-item>
+    
+    <ion-button  (click)="register()" fill="outline" type="submit" shape="round" expand="block" color="success" class="ion-margin-top">
+      <ion-icon name="log-in"></ion-icon>
+       Registrarse
+    </ion-button>
+  <div text-center margin-top class="ion-margin-top">
+    <span  class="paz" tappable>
+      <ion-button routerLink="/login" shape="round" expand="block" color="success">Ya tengo una cuenta</ion-button>
+      </span>
+    </div>
+  </div>
+</div>
+</ion-content>

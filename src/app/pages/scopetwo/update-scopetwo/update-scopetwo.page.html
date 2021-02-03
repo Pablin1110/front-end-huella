@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" (click)="dismissScopetwo()">
+      <ion-icon color="dark" name="arrow-undo-outline"></ion-icon>
+    </ion-button>
+    <ion-title>{{isUpdate ? 'Modificar' :'Agregar'}} Alcance Dos</ion-title>
+    <ion-button slot="end" fill="clear" (click)="showAlert()">
+      <ion-icon color="dark" name="information-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form #f="ngForm" (ngSubmit)="OnSubmit(f)">
+    
+    <div *ngIf="isUpdate==true;else Boton">
+      <ion-input [(ngModel)]="data.usuario_id" type="hidden"  name="usuario_id"></ion-input>
+    </div>
+    <ng-template #Boton>
+      <ion-input [(ngModel)]="usuario_id" type="hidden"  name="usuario_id"></ion-input>
+    </ng-template>
+
+    <div *ngIf="isUpdate==true;else Boton1">
+      <ion-item>
+        <ion-label >Fecha inicial:</ion-label>
+       <ion-datetime disabled=false [(ngModel)]="data.periodo_inicial" placeholder="Seleccionar fecha inicial"  display-format="YYYY-MM-DD" name="periodo_inicial">
+       </ion-datetime>
+      </ion-item>
+    </div>
+    <ng-template #Boton1>
+      <ion-item>
+        <ion-label >Fecha inicial:</ion-label>
+       <ion-datetime disabled=false [(ngModel)]="periodo_inicial" placeholder="Seleccionar fecha inicial"  display-format="YYYY-MM-DD" name="periodo_inicial">
+       </ion-datetime>
+      </ion-item>
+    </ng-template>
+
+    <div *ngIf="isUpdate==true;else Boton2">
+      <ion-item>
+        <ion-label >Fecha final:</ion-label>
+       <ion-datetime disabled=false [(ngModel)]="data.periodo_final" placeholder="Seleccionar fecha final"  display-format="YYYY-MM-DD" name="periodo_final">
+       </ion-datetime>
+      </ion-item>
+    </div>
+    <ng-template #Boton2>
+      <ion-item>
+        <ion-label >Fecha final:</ion-label>
+       <ion-datetime disabled=false [(ngModel)]="periodo_final" placeholder="Seleccionar fecha final"  display-format="YYYY-MM-DD" name="periodo_final">
+       </ion-datetime>
+      </ion-item>
+    </ng-template>
+
+    <ion-item>
+      <ion-label position="floating" >Ubicación:</ion-label>
+      <ion-input [(ngModel)]="data.ubicacion" type="text" name="ubicacion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label  >Proveedor de energia :</ion-label>
+      <ion-input [(ngModel)]="data.nombre"  readonly type="text" name="nombre"></ion-input>
+    </ion-item>
+
+    <div *ngIf="isUpdate==true;else Boton3">
+      <ion-item>
+        <ion-label position="floating" >Consumo:</ion-label>
+        <ion-input (ionChange)="OnChangeinicial($event)"  [(ngModel)]="data.consumo" type="number" name="consumo" ></ion-input>
+      </ion-item>
+    </div>
+    <ng-template #Boton3>
+      <ion-item>
+        <ion-label position="floating">Consumo:</ion-label>
+        <ion-input (ionChange)="OnChangeinicial($event)" [(ngModel)]="consumo" type="number" name="consumo" ></ion-input>
+      </ion-item>
+    </ng-template>
+
+    <div *ngIf="isUpdate==true;else Boton4">
+      <ion-item>
+        <ion-label  >Factor de emisión:</ion-label>
+        <ion-input [(ngModel)]="data.factor_emision"  readonly type="number"  name="factor_emision" ></ion-input>
+      </ion-item>
+    </div>
+    <ng-template #Boton4>
+      <ion-item>
+        <ion-label  >Factor de emisión:</ion-label>
+        <ion-input [(ngModel)]="factor_emision"  readonly type="number"  name="factor_emision" ></ion-input>
+      </ion-item>
+    </ng-template>
+
+    <div *ngIf="isUpdate==true;else Boton5">
+      <ion-item>
+        <ion-label >Emisión total:</ion-label>
+        <ion-input [(ngModel)]="data.emisiones_totales"  readonly type="number"  name="emisiones_totales" ></ion-input>
+      </ion-item>
+    </div>
+    <ng-template #Boton5>
+      <ion-item>
+        <ion-label  >Emisión total:</ion-label>
+        <ion-input [(ngModel)]="emisiones_totales"  readonly type="number"  name="emisiones_totales" ></ion-input>
+      </ion-item>
+    </ng-template>
+
+    <div *ngIf="isUpdate==true;else Boton6">
+      <ion-button [disabled]="!f.valid" type="submit" fill="solid" shape="round" expand="block" color="success" class="ion-margin-top">{{isUpdate ? 'Modificar' :'Ingresar'}}</ion-button>
+  </div>
+  <ng-template #Boton6>
+      <ion-button [disabled]="!f.valid" type="submit" fill="solid" shape="round" expand="block" color="success" class="ion-margin-top">{{isUpdate ? 'Modificar' :'Ingresar'}}</ion-button>
+  </ng-template>
+  </form>
+
+</ion-content>

@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" (click)="dismissOrganization()">
+      <ion-icon color="dark" name="arrow-undo-outline"></ion-icon>
+    </ion-button>
+    <ion-title>{{isUpdate ? 'Modificar' :'Agregar'}} Organización</ion-title>
+    <ion-button slot="end" fill="clear" (click)="showAlert()">
+      <ion-icon color="dark" name="information-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="OnSubmit(f)">
+    <div *ngIf="isUpdate==true;else Boton2">
+        <ion-input [(ngModel)]="id_usuario" type=hidden name="id_usuario"></ion-input>
+   </div>
+  <ng-template #Boton2>
+    <ion-input [(ngModel)]="id_usuario" type=hidden name="id_usuario"></ion-input>
+  </ng-template>
+    <ion-item>
+      <ion-label position="floating" >Nombre:</ion-label>
+      <ion-input [(ngModel)]="data.nombre" type="text" name="nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" >Tipo:</ion-label>
+      <ion-select  [(ngModel)]="data.tipo"  (ionChange)="OnChange($event)" position="floating" name="tipo">
+        <ion-select-option *ngFor= 'let item of dataType' [value]='item.name'>
+          {{item.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" >Sector:</ion-label>
+      <ion-select  [(ngModel)]="data.sector" position="floating" name="sector" >
+        <ion-select-option *ngFor= 'let item of dataSector' [value]='item.name'>
+          {{item.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div *ngIf="isUpdate==true;else Boton3">
+      <ion-item>
+        <ion-label >Fecha de cáculo:</ion-label>
+       <ion-datetime disabled=false [(ngModel)]="data.fecha" placeholder="Seleccionar fecha"  display-format="YYYY-MM-DD" name="fecha">
+       </ion-datetime>
+      </ion-item>
+    </div>
+    <ng-template #Boton3>
+      <ion-item>
+        <ion-label >Fecha de cáculo:</ion-label>
+       <ion-datetime disabled=false [(ngModel)]="fecha" placeholder="Seleccionar fecha"  display-format="YYYY-MM-DD" name="fecha">
+       </ion-datetime>
+      </ion-item>
+    </ng-template>
+    <div *ngIf="isUpdate==true;else Boton4">
+      <ion-item>
+        <ion-label position="floating" >Superficie:</ion-label>
+        <ion-input [(ngModel)]="data.superficie" placeholder="En metros cuadrados" type="number"  name="superficie" ></ion-input>
+      </ion-item>
+    </div>
+    <ng-template #Boton4>
+      <ion-item>
+        <ion-label position="floating" >Superficie:</ion-label>
+        <ion-input [(ngModel)]="superficie"   placeholder="En metros cuadrados" type="number"  name="superficie" ></ion-input>
+      </ion-item>
+    </ng-template>
+    <ion-item>
+      <ion-label position="floating" >Dirección:</ion-label>
+      <ion-input [(ngModel)]="data.direccion"  type="text"  name="direccion" ></ion-input>
+    </ion-item>
+    <div *ngIf="isUpdate==true;else Boton5">
+      <ion-item>
+        <ion-label position="floating" >Cantidad de empleados{{this.employee}}:</ion-label>
+        <ion-input [(ngModel)]="data.empleados"  type="number"  name="empleados" ></ion-input>
+      </ion-item>
+    </div>
+    <ng-template #Boton5>
+      <ion-item>
+        <ion-label position="floating" >Cantidad de empleados{{this.employee}}:</ion-label>
+        <ion-input [(ngModel)]="empleados"  type="number"  name="empleados" pattern="[0-9]*"></ion-input>
+      </ion-item>
+    </ng-template>
+    <div *ngIf="isUpdate==true;else Boton">
+      <ion-button [disabled]="!f.valid" type="submit" fill="solid" shape="round" expand="block" color="success" class="ion-margin-top">{{isUpdate ? 'Modificar' :'Ingresar'}}</ion-button>
+  </div>
+  <ng-template #Boton>
+      <ion-button [disabled]="!f.valid" type="submit" fill="solid" shape="round" expand="block" color="success" class="ion-margin-top">{{isUpdate ? 'Modificar' :'Ingresar'}}</ion-button>
+  </ng-template>
+  </form>
+</ion-content>
